@@ -26,7 +26,6 @@ free_meal <- L2S3 %>%
   ) %>%
   filter(!is.na(Age_Group), Free_Meal == "Yes")
 
-# Compute state-level aggregates
 state_level <- free_meal %>%
   group_by(State, Age_Group, Sector) %>%
   summarise(Population = sum(final_weight, na.rm = TRUE), .groups = "drop")%>%
@@ -200,3 +199,4 @@ View(free_meal_all)
 
 
 write_xlsx(free_meal1_all, "Free_Meal_taken(Age 0-5 and 6-15)_2011-12.xlsx")
+
