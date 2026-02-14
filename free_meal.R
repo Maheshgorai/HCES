@@ -38,7 +38,6 @@ india_level <- free_meal %>%
 
 free_meal_bind <- bind_rows(state_level, india_level)
 
-# Pivot wider
 combined_wide <- free_meal_bind %>%
   pivot_wider(
     names_from = Age_Group,
@@ -48,7 +47,6 @@ combined_wide <- free_meal_bind %>%
   mutate(State = as.character(State)) %>%  
   arrange(State)
 
-# Add State_Name
 combined_wide <- combined_wide %>%
   mutate(State_Name = case_when(
     State == "India" ~ "India",
@@ -197,6 +195,7 @@ View(free_meal_all)
 
 
 write_xlsx(free_meal1_all, "Free_Meal_taken(Age 0-5 and 6-15)_2011-12.xlsx")
+
 
 
 
