@@ -36,7 +36,6 @@ india_level <- free_meal %>%
   summarise(Population = sum(final_weight, na.rm = TRUE), .groups = "drop") %>%
   mutate(State = "India")  
 
-# Combine state and India levels
 free_meal_bind <- bind_rows(state_level, india_level)
 
 # Pivot wider
@@ -198,5 +197,6 @@ View(free_meal_all)
 
 
 write_xlsx(free_meal1_all, "Free_Meal_taken(Age 0-5 and 6-15)_2011-12.xlsx")
+
 
 
