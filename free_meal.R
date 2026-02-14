@@ -31,7 +31,6 @@ state_level <- free_meal %>%
   summarise(Population = sum(final_weight, na.rm = TRUE), .groups = "drop")%>%
   mutate(State = as.character(State))
 
-# Compute India-level aggregates (by Sector only)
 india_level <- free_meal %>%
   group_by(Age_Group, Sector) %>%
   summarise(Population = sum(final_weight, na.rm = TRUE), .groups = "drop") %>%
@@ -199,4 +198,5 @@ View(free_meal_all)
 
 
 write_xlsx(free_meal1_all, "Free_Meal_taken(Age 0-5 and 6-15)_2011-12.xlsx")
+
 
