@@ -134,7 +134,6 @@ india_level1 <- free_meal1 %>%
 
 free_meal1_bind <- bind_rows(state_level1,india_level1)
 
-# Pivot wider
 combined_wide1 <- free_meal1_bind %>%
   pivot_wider(
     names_from = Age_Group,
@@ -189,6 +188,7 @@ combined_wide1 <- combined_wide1 %>%
 
 free_meal1_all <- combined_wide1 %>%
   select(State, State_Name, Sector, everything())
+
 
 
 
