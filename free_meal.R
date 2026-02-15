@@ -144,7 +144,6 @@ combined_wide1 <- free_meal1_bind %>%
   mutate(State = as.character(State)) %>%  
   arrange(State)
 
-# Add State_Name
 combined_wide1 <- combined_wide1 %>%
   mutate(State_Name = case_when(
     State == "India" ~ "India",
@@ -190,6 +189,7 @@ combined_wide1 <- combined_wide1 %>%
 
 free_meal1_all <- combined_wide1 %>%
   select(State, State_Name, Sector, everything())
+
 
 
 
