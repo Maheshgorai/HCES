@@ -125,7 +125,6 @@ state_level1 <- free_meal1 %>%
   summarise(Population = sum(final_weight, na.rm = TRUE), .groups = "drop")%>%
   mutate(State = as.character(State))
 
-# Compute India-level aggregates (by Sector only)
 india_level1 <- free_meal1 %>%
   group_by(Age_Group, Sector) %>%
   summarise(Population = sum(final_weight, na.rm = TRUE), .groups = "drop") %>%
@@ -188,6 +187,7 @@ combined_wide1 <- combined_wide1 %>%
 
 free_meal1_all <- combined_wide1 %>%
   select(State, State_Name, Sector, everything())
+
 
 
 
