@@ -191,10 +191,7 @@ combined_wide1 <- combined_wide1 %>%
 free_meal1_all <- combined_wide1 %>%
   select(State, State_Name, Sector, everything())
 
-View(free_meal_all)
 
-
-write_xlsx(free_meal1_all, "Free_Meal_taken(Age 0-5 and 6-15)_2011-12.xlsx")
 
 
 
