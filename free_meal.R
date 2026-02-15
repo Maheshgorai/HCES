@@ -119,7 +119,6 @@ free_meal1 <- L4T2 %>%
   filter(!is.na(Age_Group), Free_Meal == "Yes")
 View(free_meal1)
 
-# Compute state-level aggregates
 state_level1 <- free_meal1 %>%
   group_by(State, Age_Group, Sector) %>%
   summarise(Population = sum(final_weight, na.rm = TRUE), .groups = "drop")%>%
@@ -187,6 +186,7 @@ combined_wide1 <- combined_wide1 %>%
 
 free_meal1_all <- combined_wide1 %>%
   select(State, State_Name, Sector, everything())
+
 
 
 
