@@ -104,8 +104,6 @@ free_meal1 <- L4T2 %>%
     Age_Group = case_when(
       V22 >= 0 & V22 <= 5 ~ "Age 0-5",
       V22 >= 6 & V22 <= 15 ~ "Age 6-15",
-      
-      
       TRUE ~ NA_character_
     ),
     State = V36,
@@ -181,6 +179,7 @@ combined_wide1 <- combined_wide1 %>%
 
 free_meal1_all <- combined_wide1 %>%
   select(State, State_Name, Sector, everything())
+
 
 
 
