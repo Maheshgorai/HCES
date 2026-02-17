@@ -110,7 +110,7 @@ free_meal1 <- L4T2 %>%
       V22 >= 0 & V22 <= 5 ~ "Age 0-5",
       V22 >= 6 & V22 <= 15 ~ "Age 6-15",
       #Column20 >= 14 & Column20 <= 15 ~ "14-15",
-      #Column20 >= 16 & Column20 <= 17 ~ "16-17",
+      
       TRUE ~ NA_character_
     ),
     State = V36,
@@ -186,6 +186,7 @@ combined_wide1 <- combined_wide1 %>%
 
 free_meal1_all <- combined_wide1 %>%
   select(State, State_Name, Sector, everything())
+
 
 
 
