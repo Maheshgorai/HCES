@@ -42,10 +42,10 @@ india_level <- free_meal %>%
   summarise(Population = sum(final_weight, na.rm = TRUE), .groups = "drop") %>%
   mutate(State = "India")  
 
-# Combine state and India levels
+
 free_meal_bind <- bind_rows(state_level, india_level)
 
-# Pivot wider
+
 combined_wide <- free_meal_bind %>%
   pivot_wider(
     names_from = Age_Group,
@@ -55,7 +55,7 @@ combined_wide <- free_meal_bind %>%
   mutate(State = as.character(State)) %>%  
   arrange(State)
 
-# Add State_Name
+
 combined_wide <- combined_wide %>%
   mutate(State_Name = case_when(
     State == "India" ~ "India",
@@ -98,13 +98,12 @@ combined_wide <- combined_wide %>%
     TRUE ~ "Unknown"
   ))
 
-View(combined_wide)
+
 
 free_meal_all <- combined_wide %>%
   select(State_Name, Sector,Free_meal_taken, `Age 0-5`, `Age 6-15`)
 
-View(free_meal_all)
 
-write_xlsx(free_meal_all, "No_of_free_Meal_taken(Age 0-5 and 6-15)_2023-24.xlsx")
+
 
 
