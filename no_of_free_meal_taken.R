@@ -3,7 +3,6 @@ library(data.table)
 library(tidyr)
 library(writexl)
 
-setwd("D:/Sch_edu/HCES")
 
 L2S3 <- fread("D:/Sch_edu/HCES/LEVEL - 02 (Section 3).txt")
 L4T2 <- fread("D:/Sch_edu/HCES/Demographic and other particulars of household members - Block 4  - Level 4 - Type 2 - 68(2011-2012).txt")
@@ -32,13 +31,12 @@ free_meal <- L2S3 %>%
   ) %>%
   filter(!is.na(Age_Group))
 
-# Compute state-level aggregates
+
 state_level <- free_meal %>%
   group_by(State, Age_Group, Sector,Free_meal_taken) %>%
   summarise(Population = sum(final_weight, na.rm = TRUE), .groups = "drop")%>%
   mutate(State = as.character(State))
 
-# Compute India-level aggregates (by Sector only)
 india_level <- free_meal %>%
   group_by(Age_Group, Sector,Free_meal_taken) %>%
   summarise(Population = sum(final_weight, na.rm = TRUE), .groups = "drop") %>%
@@ -108,4 +106,5 @@ free_meal_all <- combined_wide %>%
 View(free_meal_all)
 
 write_xlsx(free_meal_all, "No_of_free_Meal_taken(Age 0-5 and 6-15)_2023-24.xlsx")
+
 
