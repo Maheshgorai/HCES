@@ -3,8 +3,6 @@ library(data.table)
 library(tidyr)
 library(writexl)
 
-setwd("D:/Sch_edu/HCES")
-
 L2S3 <- fread("D:/Sch_edu/HCES/LEVEL - 02 (Section 3).txt")
 L4T2 <- fread("D:/Sch_edu/HCES/Demographic and other particulars of household members - Block 4  - Level 4 - Type 2 - 68(2011-2012).txt")
 View(L2S3)
@@ -25,22 +23,22 @@ free_meal <- L2S3 %>%
   ) %>%
   filter(!is.na(Age_Group))
 
-# Compute state-level aggregates
+
 state_level <- free_meal %>%
   group_by(State, Age_Group, Sector) %>%
   summarise(Population = sum(final_weight, na.rm = TRUE), .groups = "drop")%>%
   mutate(State = as.character(State))
 
-# Compute India-level aggregates (by Sector only)
+
 india_level <- free_meal %>%
   group_by(Age_Group, Sector) %>%
   summarise(Population = sum(final_weight, na.rm = TRUE), .groups = "drop") %>%
   mutate(State = "India")  
 
-# Combine state and India levels
+
 free_meal_bind <- bind_rows(state_level, india_level)
 
-# Pivot wider
+
 combined_wide <- free_meal_bind %>%
   pivot_wider(
     names_from = Age_Group,
@@ -50,7 +48,7 @@ combined_wide <- free_meal_bind %>%
   mutate(State = as.character(State)) %>%  
   arrange(State)
 
-# Add State_Name
+
 combined_wide <- combined_wide %>%
   mutate(State_Name = case_when(
     State == "India" ~ "India",
@@ -97,9 +95,6 @@ combined_wide <- combined_wide %>%
 free_meal_all <- combined_wide %>%
   select(State, State_Name, Sector, everything())
 
-View(free_meal_all)
-
-write_xlsx(free_meal_all, "Population(Age 0-5 and 6-15)_2023-24.xlsx")
 
 # 2011-2012 =====================================================================
 
@@ -198,3 +193,4 @@ View(free_meal_all)
 
 
 write_xlsx(free_meal1_all, "Population(Age 0-5 and 6-15)_2011-12.xlsx")
+
