@@ -6,7 +6,6 @@ library(writexl)
 
 L2S3 <- fread("D:/Sch_edu/HCES/LEVEL - 02 (Section 3).txt")
 L4T2 <- fread("D:/Sch_edu/HCES/Demographic and other particulars of household members - Block 4  - Level 4 - Type 2 - 68(2011-2012).txt")
-View(L2S3)
 
 free_meal <- L2S3 %>%
   mutate(
@@ -31,7 +30,6 @@ free_meal <- L2S3 %>%
   ) %>%
   filter(!is.na(Age_Group))
 
-
 state_level <- free_meal %>%
   group_by(State, Age_Group, Sector,Free_meal_taken) %>%
   summarise(Population = sum(final_weight, na.rm = TRUE), .groups = "drop")%>%
@@ -42,9 +40,7 @@ india_level <- free_meal %>%
   summarise(Population = sum(final_weight, na.rm = TRUE), .groups = "drop") %>%
   mutate(State = "India")  
 
-
 free_meal_bind <- bind_rows(state_level, india_level)
-
 
 combined_wide <- free_meal_bind %>%
   pivot_wider(
@@ -54,7 +50,6 @@ combined_wide <- free_meal_bind %>%
   ) %>%
   mutate(State = as.character(State)) %>%  
   arrange(State)
-
 
 combined_wide <- combined_wide %>%
   mutate(State_Name = case_when(
@@ -98,10 +93,9 @@ combined_wide <- combined_wide %>%
     TRUE ~ "Unknown"
   ))
 
-
-
 free_meal_all <- combined_wide %>%
   select(State_Name, Sector,Free_meal_taken, `Age 0-5`, `Age 6-15`)
+
 
 
 
