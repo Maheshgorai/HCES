@@ -117,22 +117,18 @@ free_meal1 <- L4T2 %>%
   filter(!is.na(Age_Group))
 View(free_meal1)
 
-# Compute state-level aggregates
 state_level1 <- free_meal1 %>%
   group_by(State, Age_Group, Sector) %>%
   summarise(Population = sum(final_weight, na.rm = TRUE), .groups = "drop")%>%
   mutate(State = as.character(State))
 
-# Compute India-level aggregates (by Sector only)
 india_level1 <- free_meal1 %>%
   group_by(Age_Group, Sector) %>%
   summarise(Population = sum(final_weight, na.rm = TRUE), .groups = "drop") %>%
   mutate(State = "India")
 
-
 free_meal1_bind <- bind_rows(state_level1,india_level1)
 
-# Pivot wider
 combined_wide1 <- free_meal1_bind %>%
   pivot_wider(
     names_from = Age_Group,
@@ -142,7 +138,6 @@ combined_wide1 <- free_meal1_bind %>%
   mutate(State = as.character(State)) %>%  
   arrange(State)
 
-# Add State_Name
 combined_wide1 <- combined_wide1 %>%
   mutate(State_Name = case_when(
     State == "India" ~ "India",
@@ -185,12 +180,8 @@ combined_wide1 <- combined_wide1 %>%
     TRUE ~ "Unknown"
   ))
 
-
 free_meal1_all <- combined_wide1 %>%
   select(State, State_Name, Sector, everything())
 
-View(free_meal_all)
 
-
-write_xlsx(free_meal1_all, "Population(Age 0-5 and 6-15)_2011-12.xlsx")
 
