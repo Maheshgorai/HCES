@@ -5,7 +5,6 @@ library(writexl)
 
 L2S3 <- fread("D:/*****/*****/LEVEL - 02 (Section 3).txt")
 L4T2 <- fread("D:/*****/*****/Demographic and other particulars of household members - Block 4  - Level 4 - Type 2 - 68(2011-2012).txt")
-View(L2S3)
 
 free_meal <- L2S3 %>%
   mutate(
@@ -182,6 +181,7 @@ combined_wide1 <- combined_wide1 %>%
 
 free_meal1_all <- combined_wide1 %>%
   select(State, State_Name, Sector, everything())
+
 
 
 
