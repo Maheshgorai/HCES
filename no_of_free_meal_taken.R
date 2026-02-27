@@ -4,8 +4,8 @@ library(tidyr)
 library(writexl)
 
 
-L2S3 <- fread("D:/Sch_edu/HCES/LEVEL - 02 (Section 3).txt")
-L4T2 <- fread("D:/Sch_edu/HCES/Demographic and other particulars of household members - Block 4  - Level 4 - Type 2 - 68(2011-2012).txt")
+L2S3 <- fread("D:/*****/*****/LEVEL - 02 (Section 3).txt")
+L4T2 <- fread("D:/*****/*****/Demographic and other particulars of household members - Block 4  - Level 4 - Type 2 - 68(2011-2012).txt")
 
 free_meal <- L2S3 %>%
   mutate(
@@ -95,6 +95,7 @@ combined_wide <- combined_wide %>%
 
 free_meal_all <- combined_wide %>%
   select(State_Name, Sector,Free_meal_taken, `Age 0-5`, `Age 6-15`)
+
 
 
 
