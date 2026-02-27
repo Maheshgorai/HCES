@@ -110,7 +110,6 @@ free_meal1 <- L4T2 %>%
     Free_Meal = if_else(V27>0,"Yes", "No")
   ) %>%
   filter(!is.na(Age_Group), Free_Meal == "Yes")
-View(free_meal1)
 
 state_level1 <- free_meal1 %>%
   group_by(State, Age_Group, Sector) %>%
@@ -179,6 +178,7 @@ combined_wide1 <- combined_wide1 %>%
 
 free_meal1_all <- combined_wide1 %>%
   select(State, State_Name, Sector, everything())
+
 
 
 
